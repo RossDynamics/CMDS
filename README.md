@@ -14,7 +14,7 @@ Context objects are manipulated with _context access functions_, which edit or v
 
 The most fundamental context access functions, `cg` and `cs`, respectively read and write properties while automatically converting to and from 
 the active coordinate system. For example, if velocity variables are active in a context object's coordinate system, `cg` will 
-return symbolic expressions stored in the context object in terms of _qdot_ variables. If momentum variables are instead active, `cg` will instead use `p` variables. 
+return symbolic expressions stored in the context object in terms of `qdot` variables. If momentum variables are instead active, `cg` will instead use `p` variables. 
 CMDS's coordinate system conversion functionality works with both numeric and symbolic data.
 
 Some context access functions perform higher-level functionality. The `solveDynamics` function, for example, calculates and stores the Lagrangian, the Hamiltonian,
