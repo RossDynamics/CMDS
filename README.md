@@ -1,5 +1,7 @@
 # CMDS
 
+[![View CMDS on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://www.mathworks.com/matlabcentral/fileexchange/78182-cmds)
+
 ## Introduction
 
 CMDS (Context Manager for Dynamical Systems) is a MATLAB framework designed to facilitate analysis of dynamical systems. CMDS can help you:
