@@ -18,7 +18,7 @@ return symbolic expressions stored in the context object in terms of `qdot` vari
 CMDS's coordinate system conversion functionality works with both numeric and symbolic data.
 
 Some context access functions perform higher-level functionality. The `solveDynamics` function, for example, calculates and stores the Lagrangian, the Hamiltonian,
-the conversion equations between _qdot_ and _p_ variables, and even the equations of motion for a system. The `integ` function numerically integrates a desired trajectory
+the conversion equations between `qdot` and `p` variables, and even the equations of motion for a system. The `integ` function numerically integrates a desired trajectory
 using the equations of motion and (if needed) any parameters stored in the context object.
 
 CMDS enormously automates workflows. You don't need to code equations of motion, energies, conversion functions, etc. separately anymore. Using
@@ -40,7 +40,7 @@ Optional support for other toolboxes may be added in the future.
 
 # Contributing
 
-Pull requests, bug reports, and feature suggestions are all welcome. CMDS is still in the early stages of development, so be aware that CMDS features and interfaces
+Pull requests, bug reports, and feature suggestions are all welcome. CMDS is still in the early stages of development, so be aware that CMDS features
 may change dramatically and without warning.
 
 ## License
