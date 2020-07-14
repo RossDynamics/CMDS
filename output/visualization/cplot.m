@@ -39,7 +39,6 @@ dmode = lower(cg(c,'s.o.v.dmode'));
 
 if strcmp(dmode,'position')
     if n <= 4
-        lineSpec
         p = plot(y(1,:),y(2,:),lineSpec);
     elseif n >= 6
         p = plot3(y(1,:),y(2,:),y(3,:),lineSpec);
