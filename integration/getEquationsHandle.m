@@ -17,17 +17,9 @@ rheqnsf = rhs(eqnsf);
 %have to substitute in new variables for constructing the function
 %handle.
 
-q = cg(c,'d.q');
-qdot = cg(c,'d.qdot');
-p = cg(c,'d.p');
 t = cg(c,'d.t');
 
-useMomentum = cg(c,'ac.useMomentum');
-if useMomentum
-   current = [q; p]; 
-else
-   current = [q; qdot];
-end
+current = getCurrentCoordVars(c);
 
 syms y [numel(formula(current)),1]
 
