@@ -21,7 +21,7 @@ t = cg(c,'d.t');
 
 current = getCurrentCoordVars(c);
 
-syms y [numel(formula(current)),1]
+syms y [numel(formula(current)) 1]
 
 preHandle = subs(rheqnsf,current,y);
 

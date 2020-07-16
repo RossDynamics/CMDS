@@ -1,11 +1,10 @@
 %This script is an introductory example to CMDS. It demonstrates
 %CMDS functionality, including the automatic dynamics solver and the
-%coordinate system converters.
+%coordinate system converters, using the simple harmonic oscillator.
 
 %%
 %First, we create a new context object. The "2" denotes that the phase
-%space will be two-dimensional; we're going to be implementing a harmonic
-%oscillator.
+%space will be two-dimensional.
 c = Context(2);
 
 %%
@@ -128,3 +127,24 @@ c = cs(c,'ac.basis',R(pi/3));
 integplot(0:0.1:15,cg(c,'my.example'),c)
 
 %It does! Everything rotated accordingly.
+%%
+%Let's calculate the monodromy matrix for our trajectory, which is actually
+%a periodic orbit. The period, as one knows from the general solution for
+%the harmonic oscillator) is equal to 2*pi / omega, where omega =
+%sqrt(k/m). We use the STM function to calculate the monodromy matrix 
+%(since the monodromy matrix is just the state transition matrix of a 
+%periodic orbit after one period). Because the STM function returns an
+%array of state transition matrices, we get the second slice of the third
+%dimension of the result.
+
+period = 2*pi / sqrt(cg(c,'p.k')/cg(c,'p.m'));
+disp('Period:')
+disp(period)
+
+stmarray = stm([0 period],cg(c,'my.example'),c);
+monodromy = stmarray(:,:,2);
+disp('Monodromy matrix for this trajectory (using the correct period):')
+disp(monodromy)
+
+%Since the entire phase space is foliated by periodic orbits, this result
+%for the monodromy matrix is expected.

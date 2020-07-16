@@ -22,7 +22,7 @@ function value = cg(context,property,varargin)
 if nargin == 2
     assumeStruct = true;
 elseif nargin >= 3
-    assumeStruct = cell2mat(varargin(1));
+    assumeStruct = varargin{1};
 end
 
 atproperty = getfield_nested(context,property);

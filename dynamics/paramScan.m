@@ -22,7 +22,7 @@ pf = formula(p);
 ignore = [qf; qdotf; pf; t];
 
 if nargin > 2
-    extra_ignore = cell2sym(varargin(1));
+    extra_ignore = varargin{1};
     extra_ignore = reshape(extra_ignore,[numel(extra_ignore),1]);
     ignore = [ignore; extra_ignore];
 end

@@ -47,11 +47,11 @@ if nargin == 3
     assumeStruct = true;
 
 elseif nargin == 4
-    transformType = cell2mat(varargin(1));
+    transformType = varargin{1};
     assumeStruct = true;
 elseif nargin >= 5
-    transformType = cell2mat(varargin(1));
-    assumeStruct = cell2mat(varargin(2));
+    transformType = varargin{1};
+    assumeStruct = varargin{2};
 end
 
 if assumeStruct

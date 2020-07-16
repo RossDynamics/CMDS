@@ -3,7 +3,7 @@ function p = integplot(tspan,y0,c,varargin)
 %cplot. Like cplot, integplot can take an optional lineSpec argument.
 
 if nargin >= 4
-    lineSpec = char(varargin(1));
+    lineSpec = varargin{1};
 else
     lineSpec = '';
 end

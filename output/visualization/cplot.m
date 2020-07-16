@@ -29,7 +29,7 @@ function p = cplot(y,c,varargin)
 %pass it to the plotter function in use.
 
 if nargin >= 3
-    lineSpec = char(varargin(1));
+    lineSpec = varargin{1};
 else
     lineSpec = '';
 end
