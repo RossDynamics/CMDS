@@ -11,9 +11,7 @@ function context = cs(context,property,value,varargin)
 % 2. When assumeStruct is false, CS will write the
 % raw value without transforming it. This technique allows one to access 
 % metadata (for example).
-
 %There are three different ways to call CS: 
-
 %1. If CS is called with three arguments, current or default values will be
 %used for transformType and assumeStruct will be assumed true.
 %2. If CS is called with four arguments, the third argument will be 
