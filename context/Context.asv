@@ -76,21 +76,19 @@ c.s.o.v.dmode = Property('position',0);
 c.s.other = struct;
 
 %A place to store stuff like function handles for the equations of motion
-%that are ordinarily recalulated every single time they're used. Note that
-%caching should be started using the startCaching function so that the
-%appropriate locks will also be set and unset. For similar reasons, it 
-%should be unset (and cleared) with the stopCaching function. 
-%We don't prepopulate the cache with any properties.
-%When clearCache is called, everything will be reverted to the following
-%state. The cache is locked unless in use.
+%that are ordinarily recalulated every single time they're used. Stuff in
+%the cache will only be used if c.cache.useCache is logical true.
 c.ca = struct;
+c.cache.useCache = Property(false,0);
+%A c
+c.ca.eqnsHandle = struct;
+c.ca.energyHandle = struct;
 
 %An array of strings denoting locked property names. If a property name or
 %a namespace for the provided property is found on this list when 
 %attempting to call cs, cs will refuse to write to that property name until
-%the lock is removed. As mentioned above, the cache is locked unless in
-%use; the cache is the only namespace that's locked by default.
-c.locks = Property({'ca'},0);
+%the lock is removed.
+c.locks = Property({},0);
 
 %Other
 c.other = struct;

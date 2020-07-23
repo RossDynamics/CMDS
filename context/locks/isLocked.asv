@@ -1,0 +1,8 @@
+function result = isLocked(c,p)
+%ISLOCKED Determines whether the namespace/property p has any active locks
+%in the context c.
+
+result = any(strcmp(getLocks,));
+
+end
+
