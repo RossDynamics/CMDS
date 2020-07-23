@@ -19,6 +19,9 @@ function value = cg(context,property,varargin)
 %isprop(context,property) because we want to raise an error 
 %if the property does not exist.
 
+%Also note that cg contains no code for handling locks because locks don't
+%affect read operations. They just prevent write operations.
+
 if nargin == 2
     assumeStruct = true;
 elseif nargin >= 3

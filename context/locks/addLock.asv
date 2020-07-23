@@ -1,0 +1,9 @@
+function c = addLock(p,c)
+%ADDLOCK Adds a lock for the namespace/property path p to the context c.
+%For example, to lock all parameters, call c = addLock('p',c). To lock the
+%equations of motion, call c = addLock('d.eqns',c).
+
+%We intentionally avoid using cg and cs 
+
+end
+

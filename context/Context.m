@@ -75,6 +75,12 @@ c.s.o.v.dmode = Property('position',0);
 %Other settings
 c.s.other = struct;
 
+%An array of strings denoting locked property names. If a property name or
+%a namespace for the provided property is found on this list when 
+%attempting to call cs, cs will refuse to write to that property name until
+%the lock is removed.
+c.locks = Property({},0);
+
 %Other
 c.other = struct;
 

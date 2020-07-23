@@ -25,6 +25,16 @@ function p = cplot(y,c,varargin)
 %cplot will show a 3D plot of the first three dimensions of velocity
 %space.
 
+%If c.d.o.v.dmode = 'i' for some integer i, cplot will 
+%prioritize showing the ith position and ith velocity/momentum
+%coordinates. Specifically: 
+%-If c.d.n = 2, cplot
+%will show the trajectory with initial condition y0 and t 
+%values tspan in the full phase space (the same behavior as in the
+%'position' mode). 
+%-If c.d.n >= 4, cplot will show
+%the 2D q_i - qdot_i/p_i space projection of the same trajectory. 
+
 %cplot accepts an optional lineSpec argument; if it is provided, cplot will
 %pass it to the plotter function in use.
 
@@ -50,7 +60,14 @@ elseif strcmp(dmode,'velocity')
         p = plot(y(3,:),y(4,:),lineSpec);
     elseif n >= 6
         p = plot3(y(n/2+1,:),y(n/2+2,:),y(n/2+3,:),lineSpec);
-    end    
+    end 
+elseif ~isnan(str2double(dmode))
+    inum = str2double(dmode);
+    if n == 2
+        p = plot(y(1,:),y(2,:),lineSpec);
+    elseif n >= 4
+        p = plot(y(inum,:),y(n/2+inum,:),lineSpec);
+    end
 else
     ME = MException('CMDS:invaliddmode', ...
         'The dimension mode dmode provided is not valid.');
