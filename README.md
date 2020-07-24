@@ -9,7 +9,7 @@ CMDS (Context Manager for Dynamical Systems) is a MATLAB framework designed to f
 * organize and manipulate dynamics data (numeric arrays, symbolic expressions, etc.)
 * transform effortlessly between coordinate systems (new bases and origins, as well as velocity/momentum coordinate conversions, are currently supported)
 * automatically derive and apply Hamiltonians, equations of motion, etc.
-* calculate trajectories, state transition matrices, and other important features of a dynamical system 
+* calculate trajectories, state transition matrices, energies, and other important features of a dynamical system 
 
 CMDS introduces the concept of _context objects_. Context objects are hierarchical representations of dynamical systems and their data. 
 They store just about everything&mdash;parameters, equations of motion, active coordinate systems, integration settings, etc.&mdash;as _properties_.
