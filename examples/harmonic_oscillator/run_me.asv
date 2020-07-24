@@ -131,33 +131,12 @@ integplot(0:0.1:15,cg(c,'my.example'),c)
 %%
 %Since we're doing a lot of integration-type analysis, let's turn the cache
 %on. The cache allows CMDS to store certain data, like integration function
-%handles, without having to recalculate everything every single time; 
-%operations like integ become much faster. The trade-off is that some parts
-%of the context object get "locked" from editing so that you can't make a
-%change to a parameter that would make a function handle obsolete.
+%handles, without having to recalculate everything every single time. The
+%trade-off is that some parts of the context object get "locked" from 
+%editing so that you can't make a change to a parameter that would make a
+%function handle obsolete.
 
-disp('Starting cache...')
-c = startCaching(c);
-
-%When the cache is active, the p namespace is locked. If you uncomment the
-%code below, you can see what happens when you try to edit a locked
-%variable (we don't do it by default because it stops the script):
-
-%disp('Trying to create p.test...')
-%c = cs(c,'p.test',1)
-
-%We get an error message. If we unlock the namespace by stopping caching,
-%we will no longer get an error:
-
-disp('Stopping cache...')
-c = stopCaching(c);
-
-disp('Trying to create p.test...')
-c = cs(c,'p.test',1);
-
-%For now, let's keep the cache on.
-disp('Starting cache (again)...')
-c = startCaching(c);
+c = startCach
 
 %%
 %Let's calculate the monodromy matrix for our trajectory, which is actually
@@ -167,30 +146,16 @@ c = startCaching(c);
 %(since the monodromy matrix is just the state transition matrix of a 
 %periodic orbit after one period). Because the STM function returns an
 %array of state transition matrices, we get the second slice of the third
-%dimension of the result. 
+%dimension of the result.
 
 period = 2*pi / sqrt(cg(c,'p.k')/cg(c,'p.m'));
 disp('Period:')
 disp(period)
 
-%Functions that use the cache will modify their context object while
-%caching is active. As a result, you need to catch c as an output argument
-%while caching (for consistency, it's not a bad idea to do it even while
-%not caching). For simplicity and because the cache was inactive, 
-%we didn't do it above, but we'll do it from now on.
-[stmarray,~,c] = stm([0 period],cg(c,'my.example'),c);
+stmarray = stm([0 period],cg(c,'my.example'),c);
 monodromy = stmarray(:,:,2);
 disp('Monodromy matrix for this trajectory (using the correct period):')
 disp(monodromy)
 
 %Since the entire phase space is foliated by periodic orbits, this result
 %for the monodromy matrix is expected.
-
-%%
-%Let's plot the energy of our trajectory! Note, although we don't show it
-%here, that energyplot can also plot other energy functions and 
-%the trajectory itself (see energyplot for details). Observe how the energy
-%is conserved (up to numerical error), which is what we would expect in
-%this system.
-[res,c] = energyplot(linspace(0, period,100),cg(c,'my.example'),c);
-axis equal
