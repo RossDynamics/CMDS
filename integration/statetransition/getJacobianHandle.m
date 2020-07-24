@@ -1,5 +1,5 @@
 function jacobianHandle = getJacobianHandle(eqns,c)
-%getJacobianHandle Creates a function handle in the current coordinate
+%GETJACOBIANHANDLE Creates a function handle in the current coordinate
 %system and parameter set that can be evaluated to obtain the Jacobian at a
 %point. eqns are symbolic equations of motion that use the same format as 
 %d.eqns. Be sure that the derivatives are on the left side of the equations

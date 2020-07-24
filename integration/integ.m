@@ -1,22 +1,34 @@
-function sol = integ(tspan,y0,c,varargin)
+function [sol,c] = integ(tspan,y0,c,varargin)
 %INTEG Integrates a trajectory with initial condition y0
 %(expressed as a vertical vector) over the tspan provided
 %using (by default) the equations, parameters, and settings in the context
 %c. Returns a solution struct sol directly from the integrator. 
 %If an optional argument (a function handle specifying alternate equations
 %of motion, is provided) the alternate equations of motion will be used
-%instead of the ones calculated from d.eqns.
+%instead of the ones calculated from d.eqns. If an optional output argument
+%is provided, integ will return a potentially edited context object (which
+%is necessary for caching; putting the eqnsHandle into the cache *will not*
+%work unless you can obtain the new context object).
 
 if nargin >= 4
     eqnsHandle = varargin{1};
 else
-    eqns = cg(c,'d.eqns');
-    %We get the numerically integrable function handle corresponding to the
-    %equations of motion
-    eqnsHandle = getEquationsHandle(eqns,c);
+    %integ is only directly responsible for caching the default equations
+    %of motion function handles. Custom handles must be cached by the
+    %functions that utilize them.
+    [eqnsHandle,c] = getFromCache(c,'ca.eqnsHandle',@defaultHandle,c);
+    
 end
 
 options = cg(c,'s.i.odeopts');
 integrator = cg(c,'s.i.integrator');
 
 sol = integrator(eqnsHandle,tspan,y0,options);
+end
+
+function eqnsHandle = defaultHandle(c)
+    eqns = cg(c,'d.eqns');
+    %If the function handle hasn't been cached in this caching
+    %session, we have to recalculate it.
+    eqnsHandle = getEquationsHandle(eqns,c);
+end

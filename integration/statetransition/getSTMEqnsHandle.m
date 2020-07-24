@@ -1,4 +1,4 @@
-function STMEqnsHandle = getSTMEqnsHandle(eqns,c)
+function [STMEqnsHandle,c] = getSTMEqnsHandle(eqns,c)
 %GETSTMEQNSHANDLE Obtains the equations necessary for integrating a state
 %transition matrix within the current context c. eqns are symbolic 
 %equations of motion that use the same format as d.eqns.
@@ -6,8 +6,10 @@ function STMEqnsHandle = getSTMEqnsHandle(eqns,c)
 n = cg(c,'d.n');
 
 %We get the handles for the equations of motion and the Jacobian
-eqnsFun = getEquationsHandle(eqns,c);
-jacobianFun = getJacobianHandle(eqns,c);
+[eqnsFun,c] = getFromCache(c,'ca.eqnsHandle',...
+                               @getEquationsHandle,eqns,c);
+[jacobianFun,c] = getFromCache(c,'ca.jacobianHandle',...
+                               @getJacobianHandle,eqns,c);
 
     function ydot = STMhandle(t,y)
         %We split y into trajectory and state transition matrix parts

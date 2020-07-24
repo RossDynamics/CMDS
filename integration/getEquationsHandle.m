@@ -25,7 +25,7 @@ syms y [numel(formula(current)) 1]
 
 preHandle = subs(rheqnsf,current,y);
 
-%We ensure that 
+%We ensure that the proper interface for integration is provided
 eqnHandle = matlabFunction(preHandle,'Vars',{t,y});
 
 end

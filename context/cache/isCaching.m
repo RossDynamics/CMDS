@@ -3,7 +3,7 @@ function result = isCaching(c)
 %otherwise.
 
 %If the cache is unlocked, we consider it active.
-result = ~isLocked('ca',c);
+result = ~locked(c,'ca');
 
 end
 
