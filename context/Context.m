@@ -64,6 +64,11 @@ c.s.i.odeopts = Property(odeset('Reltol',3e-14,'AbsTol',1e-15),0);
 %you use a custom solver, make sure it conforms to the same function
 %interface as ode113.
 c.s.i.integrator = Property(@ode113,0);
+%Settings for the area preservation mapper
+c.s.i.ap = struct;
+%The volume tolerance to use for comparing simplex volumes before and after
+%mapping 
+c.s.i.ap.volTol = Property(1e-8,0);
 
 %Output settings
 c.s.o = struct;
@@ -71,6 +76,12 @@ c.s.o = struct;
 c.s.o.v = struct;
 %The dimension mode to use in functions like integplot
 c.s.o.v.dmode = Property('position',0);
+
+%Console settings
+c.s.o.c = struct;
+%Whether or not to provide progress reports, status reports, etc. 
+%in certain operations like volumeMap.
+c.s.o.c.isTalkative = Property(true,0);
 
 %Other settings
 c.s.other = struct;

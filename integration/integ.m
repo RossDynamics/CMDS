@@ -4,7 +4,7 @@ function [sol,c] = integ(tspan,y0,c,varargin)
 %using (by default) the equations, parameters, and settings in the context
 %c. Returns a solution struct sol directly from the integrator. 
 %If an optional argument (a function handle specifying alternate equations
-%of motion, is provided) the alternate equations of motion will be used
+%of motion) is provided, the alternate equations of motion will be used
 %instead of the ones calculated from d.eqns. If an optional output argument
 %is provided, integ will return a potentially edited context object (which
 %is necessary for caching; putting the eqnsHandle into the cache *will not*
