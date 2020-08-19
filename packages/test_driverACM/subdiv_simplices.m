@@ -1,30 +1,21 @@
 function P = subdiv_simplices(S,k)
-%SUBDIV_SIMPLICES Subdivides a d-simplex expressed as a matrix of vertical 
-%vectors S k times. Outputs a three-dimensional array P containing k^d 
-%simplexes; varying the third index yields a matrix of vertical vectors
-%expressing a subdivided simplex. d will be automatically calculated from 
-%S. Adapted in part from draw_simplices.m. Please see notice.txt in this 
-%folder.
+%SUBDIV_SIMPLICES Subdivides a set of d-simplices expressed as a
+%three-dimensional array S k times using subdiv_simplex. Please see 
+%notice.txt in this folder.
 
+%We have to get the dimension of S
 d = size(S,1);
+    
+%Because we're using a parfor loop, we need to store the subdivided
+%simplexes separately in a 4D array at first.
 
-%We get the required color schemes
-T = simples(k,d);
-
-k = size(T{1},1);
-
-Tsize = max(size(T));
-
-P = zeros(d,d+1,Tsize);
-
-for i = 1:Tsize
-  chi = T{i};
-  for j = 1:d+1
-    for m = 1:k
-      P(:,j,i)=P(:,j,i)+S(:,chi(m,j)+1)/k;
-    end
-  end
+P4D = zeros([size(S,1:3) k^d]);
+parfor i = 1:size(S,3)
+    P4D(:,:,i,:) = subdiv_simplex(S(:,:,i),k);
 end
+    
+%We now reshape P into the proper format.
+P = reshape(P4D,size(S,1:3).*[1 1 k^d]);
 
 end
 
