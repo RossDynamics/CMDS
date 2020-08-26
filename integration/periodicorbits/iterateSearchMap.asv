@@ -5,11 +5,10 @@ function [S1,maxTol,c,S0,S0fdint,S0bdint] = iterateSearchMap(fdt,bdt,S0,...
 %t = 0 to t = fdt, obtaining S1fd. It then maps S0 backwards from t = 0 to
 %t = bdt, obtain S1bd. It intersects the points in S1fd with S0 and those
 %in S1bd with S0; by taking the intersection of the resulting two
-%simplices and finding the the simplices in the convex hull of the 
-%intersection, S1 is obtained. Any optional arguments are passed to 
-%volumeMap. %Has multiple optional output arguments, including maxTol
-%(the maximum simplex tolerance of any simplex in any volumeMap operation)
-%and the context c.
+%simplices, S1 is obtained. Any optional arguments are passed to volumeMap.
+%Has multiple optional output arguments, including maxTol (the maximum
+%simplex tolerance of any simplex in any volumeMap operation) and the
+%context c.
 
 wasCaching = isCaching(c);
 
@@ -62,10 +61,7 @@ for i = 1:size(S0fdint,3)
     end
 end
 
-%We now add all of the elements of S0 within the convex hull of S1 to S1.
-if ~isempty(S1)
-    S1 = simplexConvexHull(S1,S0);
-end
+%We no
 
 %We turn off caching if it was originally off
 if ~wasCaching

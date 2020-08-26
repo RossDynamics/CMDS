@@ -4,8 +4,7 @@ function [S0,c] = refinePeriodicOrbit(fdt,bdt,S0,c,varargin)
 startTol = 1e-12;
 tolStep = 1e-1;
 
-%We'll use endTol in case we have to "restore" a tolerance.
-endTol = [startTol];
+endTol = [startTol]'
 
 %We get the initial value of volTol and save it so that we can restore it
 %later.
@@ -71,11 +70,9 @@ while i <= 10
         axis equal
         drawnow
         
-        %If S0new is not empty, we set S0list{i} to S0new, save the
-        %current tolerance, and break
+        %If S0new is not empty, we set S0list{i} to S0new and break
         if ~isempty(S0new)
             S0list{i} = S0new;
-            endTol(i) = cg(c,'s.i.ap.volTol');
             if isTalkative
                 disp('New S0:')
                 disp(S0list{i})
@@ -113,12 +110,9 @@ while i <= 10
         if isTalkative
             disp(['Increasing volTol this iteration has not yielded '...
                   'results within ' int2str(jattempts) ' attempts. '...
-                  'Returning to previous iteration.'])  
+                  'Returning to previous iteration.'])
         end
         i = i - 1;
-        %We decrease volTol to the saved tolerance at the previous
-        %iteration times tolStep
-        c = cs(c,'s.i.ap.volTol',endTol(i)*tolStep);
     end
     
 end
