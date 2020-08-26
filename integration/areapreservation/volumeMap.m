@@ -14,10 +14,24 @@ function [S1,S0new,maxTol,c] = volumeMap(t1,S0,c,varargin)
 %Returns, depending on the number of output arguments, S1, the subdivided
 %S0 S0new, the maximum simplex volume tolerance, and the potentially edited
 %context object c (for caching).
-%If an optional argument is provided, it will be passed to integ's optional
+%If an optional argument, a string pointCacheName, is provided,
+%trajectories that are integrated will be stored in the cache
+%pointCacheName.
+%Any additional optional arguments will be passed to integ's optional
 %arguments.
 %
 %Like STM, VOLUMEMAP cannot yet handle event functions.
+
+if nargin == 3
+    pointCacheName = '';
+    integArgs = {};
+elseif nargin == 4
+    pointCacheName = varargin{1};
+    integArgs = {};
+elseif nargin >= 5
+    pointCacheName = varargin{1};
+    integArgs = varargin(2:end);
+end
 
 wasCaching = isCaching(c);
 
@@ -45,16 +59,22 @@ while true
               ' unique points.'])
     end
     
+    %if ~isempty(pointCacheName)
+    %    
+    %else
+    %    
+    %end
+    
     S1pts = zeros(size(S0pts));
    
     %We have to initialize the cache separately; the parfor loop does not
     %allow us to edit c and then pass the result to subsequent iterations.
-    [sol,c] = integ([0 t1],S0pts(:,1),c,varargin{:});
+    [sol,c] = integ([0 t1],S0pts(:,1),c,integArgs{:});
     S1pts(:,1) = sol.y(:,end);
     
     %We integrate
     parfor i = 2:size(S1pts,2)
-        [sol,~] = integ([0 t1],S0pts(:,i),c,varargin{:});
+        [sol,~] = integ([0 t1],S0pts(:,i),c,integArgs{:});
         S1pts(:,i) = sol.y(:,end);
     end
     
