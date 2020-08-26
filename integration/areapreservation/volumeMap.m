@@ -1,4 +1,4 @@
-unction [S1,S0new,maxTol,c] = volumeMap(t1,S0,c,varargin)
+function [S1,S0new,maxTol,c] = volumeMap(t1,S0,c,varargin)
 %VOLUMEMAP Maps an n-volume S0 expressed as a set of n-simplices
 %(expressed as a three dimensional array) from t = 0 to t = t1,
 %obtaining a set of simplices S1. volumeInteg attempts to perform this 
