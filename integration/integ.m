@@ -25,10 +25,3 @@ integrator = cg(c,'s.i.integrator');
 
 sol = integrator(eqnsHandle,tspan,y0,options);
 end
-
-function eqnsHandle = defaultHandle(c)
-    eqns = cg(c,'d.eqns');
-    %If the function handle hasn't been cached in this caching
-    %session, we have to recalculate it.
-    eqnsHandle = getEquationsHandle(eqns,c);
-end
