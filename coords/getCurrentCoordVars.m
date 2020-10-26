@@ -4,9 +4,9 @@ function coords = getCurrentCoordVars(c)
 
 useMomentum = cg(c,'ac.useMomentum');
 if useMomentum
-   coords = [cg(c,'d.q'); cg(c,'d.p')]; 
+   coords = [cg(c,'d.q'); cg(c,'d.p'); cg(c,'d.ev')]; 
 else
-   coords = [cg(c,'d.q'); cg(c,'d.qdot')];
+   coords = [cg(c,'d.q'); cg(c,'d.qdot'); cg(c,'d.ev')];
 end
 
 end

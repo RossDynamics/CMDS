@@ -3,7 +3,7 @@ function [STMEqnsHandle,c] = getSTMEqnsHandle(eqns,c)
 %transition matrix within the current context c. eqns are symbolic 
 %equations of motion that use the same format as d.eqns.
 
-n = cg(c,'d.n');
+n = getnExtended(c);
 
 %We get the handles for the equations of motion and the Jacobian
 [eqnsFun,c] = getFromCache(c,'ca.eqnsHandle',...

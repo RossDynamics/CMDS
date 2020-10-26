@@ -52,6 +52,7 @@ elseif isa(value,'sym')
     end
     
     poscoords = context.d.q.value;
+    extcoords = context.d.ev.value;
     
     if context.ac.useMomentum.value
         value = qdotpsym(value,context.d.qdot2p.value,...
@@ -61,9 +62,9 @@ elseif isa(value,'sym')
         nonposcoords = context.d.qdot.value;
     end
     
-    coords = [poscoords; nonposcoords];
+    coords = [poscoords; nonposcoords; extcoords];
     value = standard2newsym(value,context.ac.basis.value,...
-                            context.ac.origin.value,coords,coords);
+                  context.ac.origin.value,formula(coords),formula(coords));
 
     if all(hasSymType(value,'eq')) && isvector(value)
         value = diffeqnssimplify(value,coords,context.d.t.value);

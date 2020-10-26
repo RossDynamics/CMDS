@@ -9,6 +9,9 @@ function [sol,c] = integ(tspan,y0,c,varargin)
 %is provided, integ will return a potentially edited context object (which
 %is necessary for caching; putting the eqnsHandle into the cache *will not*
 %work unless you can obtain the new context object).
+%
+%Note: If the phase space has been extended, initial conditions must be
+%provided in y0 for all of the extra variables.
 
 if nargin >= 4
     eqnsHandle = varargin{1};
