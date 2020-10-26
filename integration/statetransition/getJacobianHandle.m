@@ -5,7 +5,8 @@ function jacobianHandle = getJacobianHandle(eqns,c)
 %d.eqns. Be sure that the derivatives are on the left side of the equations
 %of motion and that everything else is on the right side.
 
-n = cg(c,'d.n');
+%We don't want to get the base n because it might vary.
+n = getnExtended(c);
 
 %We get a function handle for the equations of motion
 f = getEquationsHandle(eqns,c);

@@ -12,7 +12,7 @@ function [phi,y,c] = stm(tspan,y0,c,varargin)
 %included. STM does not currently account for event
 %handling; that feature may or may not be added in the future.
 
-n = cg(c,'d.n');
+n = getnExtended(c);
 
 if nargin >= 4
     eqns = varargin{1};
