@@ -27,8 +27,8 @@ try
 catch exception
     if strcmp(exception.identifier,'MATLAB:dimagree')    
         ME = MException('CMDS:invalidVectorSize', ...
-        ['v cannot be converted. '...
-         'Make sure v does not have fewer rows than o or p.']);
+        ['vnew cannot be converted. '...
+         'Make sure vnew does not have fewer rows than o or p.']);
         throw(ME);
     else
         rethrow(exception)
