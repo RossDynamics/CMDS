@@ -1,1 +1,0 @@
-See the license in the subfolder (which contains the original code).
