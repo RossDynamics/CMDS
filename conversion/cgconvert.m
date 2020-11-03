@@ -27,9 +27,11 @@ if isa(value,'numeric')
             %We run the conversion equations through a paramScan first
             ceqns = paramScan(context.d.qdot2p.value,context);
             value = qdotp(value,ceqns,context.d.q.value,...
-                          context.d.qdot.value,context.d.p.value);
+                          context.d.qdot.value,context.d.p.value,...
+                          context.d.ev.value);
         end
-        value = standard2new(value,context.ac.basis.value,context.ac.origin.value);
+        value = standard2new(value,context.ac.basis.value,...
+                             context.ac.origin.value);
 
     elseif property.transformType == 2
         value = standard2newmat(value,context.ac.basis.value);
