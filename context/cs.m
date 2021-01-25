@@ -14,9 +14,9 @@ function context = cs(context,property,value,varargin)
 %There are three different ways to call CS: 
 %1. If CS is called with three arguments, current or default values will be
 %used for transformType and assumeStruct will be assumed true.
-%2. If CS is called with four arguments, the third argument will be 
+%2. If CS is called with four arguments, the last argument will be 
 %transformType and assumeStruct will still be assumed true.
-%3. If CS is called with five arguments, the fourth argument will be
+%3. If CS is called with five arguments, the last argument will be
 %assumeStruct. Be aware, though, that if assumeStruct is false
 %transformType will not be utilized (so you should pass in a dummy
 %argument).
