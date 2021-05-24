@@ -9,7 +9,9 @@ else
 end
 
 [sol,c] = integ(tspan,y0,c);
-y = deval(sol,tspan);
+%By using sol.x to plot, we can get the timesteps used by the solver. Doing
+%so is quite important for handling terminal event functions.
+y = deval(sol,sol.x);
 p = cplot(y,c,lineSpec);
 
 end

@@ -47,10 +47,14 @@ F(numel(tspan)) = struct('cdata',[],'colormap',[]);
 hold on 
 for i = 1:numel(tspan)
     for j = 1:size(y0,2)
+        cometmkr{j} = cplot(yall(:,i,j),c,'ko');
         cplot(yall(:,1:i,j),c,lineSpec{j});
     end
     drawnow
     F(i) = getframe(gcf);
+    for j = 1:size(y0,2)
+        delete(cometmkr{j});
+    end
 end
 
 
