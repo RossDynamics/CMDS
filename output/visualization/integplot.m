@@ -1,4 +1,4 @@
-function [p,c] = integplot(tspan,y0,c,varargin)
+function [p,c,sol] = integplot(tspan,y0,c,varargin)
 %INTEGPLOT A wrapper function that runs integ and plots the results via
 %cplot. Like cplot, integplot can take an optional lineSpec argument.
 
