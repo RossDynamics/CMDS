@@ -4,6 +4,8 @@ function [F,c] = integanimate(tspan,y0,c,filename,lineSpec)
 %which case the video will be saved), a cell array of lineSpecs.
 %May soon support sets of name-value pairs videoArgs that provide properties
 %for the videoWriter. Returns the created frames.
+%Does not currently support alternate equations of motion, but that feature
+%may be added eventually.
 
 arguments
     tspan

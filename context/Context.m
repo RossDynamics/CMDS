@@ -54,6 +54,14 @@ c.d.L = struct;
 c.d.H = struct;
 %The governing equations of motion for the system
 c.d.eqns = struct;
+%The property alt.eqns[i] represents alternate equations of motion
+%with which to continue if the ith event function is terminal and 
+%interrupts integration. Symbolic equations and function handles to be 
+%passed directly can both be provided. If you don't provide alternate
+%equations corresponding to an event function, then integration will simply
+%stop as usual. For example, if you want alternate equations to come into
+%force for the 1st event function, define alt.eqns1.
+c.d.alt = struct;
 
 %Active coordinates. Standard coordinates are active by default.
 c.ac.basis = Property(eye(n),0);

@@ -10,7 +10,8 @@ function [phi,y,c] = stm(tspan,y0,c,varargin)
 %of motion, will also be provided. If three output arguments are added,
 %a potentially modified context object (due to caching) will also be
 %included. STM does not currently account for event
-%handling; that feature may or may not be added in the future.
+%handling or switching equations of motion on the fly; 
+%that feature may or may not be added in the future.
 
 n = getnExtended(c);
 
