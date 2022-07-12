@@ -1,0 +1,1 @@
+The external folder of CMDS contains external packages responsible for core CMDS functionality. I will do my best to select packages whose licenses are compatible with redistribution in this format, but I may make errors occasionally; if I do, please contact me and let me know.
