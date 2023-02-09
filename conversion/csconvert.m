@@ -28,7 +28,8 @@ if isa(value,'numeric')
                                       context.ac.origin.value);
 
         %If the dynamics weren't set up, you'll get an error message.
-        if context.ac.useMomentum.value
+        if context.ac.useMomentum.value && ...
+                ~context.s.ac.overrideLegendre.value
             %We run the conversion equations through a paramScan first
             ceqns = paramScan(context.d.qdot2p.value,context);
             value = qdotp(value,ceqns,context.d.q.value,...
@@ -46,8 +47,8 @@ if isa(value,'numeric')
 elseif isa(value,'sym')
     
     if all(context.ac.basis.value == eye(context.d.n.value),'all') && ...
-            all(context.ac.origin.value == zeros(context.d.n.value,1))&&...
-            context.ac.useMomentum.value == 0
+       all(context.ac.origin.value == zeros(context.d.n.value,1))&&...
+       context.ac.useMomentum.value == 0
         return;
     end
     
@@ -64,7 +65,7 @@ elseif isa(value,'sym')
     value = new2standardsym(value,context.ac.basis.value,...
                   context.ac.origin.value,formula(coords),formula(coords));
                         
-    if context.ac.useMomentum.value
+    if context.ac.useMomentum.value && ~context.s.ac.overrideLegendre.value
         value = qdotpsym(value,context.d.qdot2p.value,context.d.p.value);
     end
 end

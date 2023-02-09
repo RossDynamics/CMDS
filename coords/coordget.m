@@ -9,6 +9,10 @@ if nargout == 0
     disp(cg(c,'ac.basis'))
     disp('Current origin (relative to standard coordinates):')
     disp(cg(c,'ac.origin'))
+    
+    if cg(c,'s.ac.overrideLegendre')
+        disp('Note: velocity/momentum coordinate conversion is disabled.')
+    end
 
     if cg(c,'ac.useMomentum')
        disp('Using momentum coordinates.'); 

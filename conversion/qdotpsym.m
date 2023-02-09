@@ -19,14 +19,16 @@ solution = solve(ceqnsf,tempvars);
 if numel(currentf) == 1
     replace = solution(1);
     replace = subs(replace,tempvars,currentf);
-    expr = simplify(subs(expr,currentf,replace));
+    expr = simplify(subs(expr,currentf,replace),...
+                    'IgnoreAnalyticConstraints',true);
 else
     for i = 1:numel(currentf)
         %We use the first solution (which is a possibly simplistic method but
         %will work for simple ceqns).
         replace = solution.(char(tempvars(i)))(1);
         replace = subs(replace,tempvars(i),currentf(i));
-        expr = simplify(subs(expr,currentf(i),replace));
+        expr = simplify(subs(expr,currentf(i),replace),...
+                    'IgnoreAnalyticConstraints',true);
     end
 end
 

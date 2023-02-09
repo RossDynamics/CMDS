@@ -1,7 +1,6 @@
 function p = cplot(y,c,varargin)
 %cplot A visualizer for a set of (vertical) vectors y. CPLOT has a couple
 %of different dimension modes; change these modes by setting c.d.o.v.dmode:
-
 %If c.d.o.v.dmode = 'position' (the default case), cplot will 
 %prioritize showing position space. Specifically: 
 %-If c.d.n = 2, cplot
@@ -12,7 +11,6 @@ function p = cplot(y,c,varargin)
 %-If c.d.n >= 6,
 %cplot will show a 3D plot of the first three dimensions of position
 %space.
-
 %If c.d.o.v.dmode = 'velocity', cplot will 
 %prioritize showing velocity space. Specifically: 
 %-If c.d.n = 2, cplot
@@ -24,7 +22,6 @@ function p = cplot(y,c,varargin)
 %-If c.d.n >= 6,
 %cplot will show a 3D plot of the first three dimensions of velocity
 %space.
-
 %If c.d.o.v.dmode = 'i' for some integer i, cplot will 
 %prioritize showing the ith position and ith velocity/momentum
 %coordinates. Specifically: 
@@ -34,7 +31,6 @@ function p = cplot(y,c,varargin)
 %'position' mode). 
 %-If c.d.n >= 4, cplot will show
 %the 2D q_i - qdot_i/p_i space projection of the same trajectory. 
-
 %cplot accepts an optional lineSpec argument; if it is provided, cplot will
 %pass it to the plotter function in use.
 

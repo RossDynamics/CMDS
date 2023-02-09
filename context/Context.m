@@ -97,6 +97,21 @@ c.s.o.c = struct;
 %in certain operations like volumeMap.
 c.s.o.c.isTalkative = Property(true,0);
 
+%Coordinate system settings
+c.s.ac = struct;
+%If this setting is set to true, CMDS will *completely
+%ignore* the standard velocity/momentum coordinates conversion workflow
+%that is executed "under the hood" in functions like cs and cg. The
+%standard procedure is to store all values in velocity coordinates, but if
+%this value is set to true properties can be stored in momentum coordinates
+%instead without conversion. The main reason why this setting exists is
+%because many systems have Legendre transformations that are
+%insufficiently invertible, which in turn gives rise to incorrect results.
+%Note that getCurrentCoordVars still needs c.ac.useMomentum to be set to
+%the correct value, so you can't ignore that property entirely after
+%setting the override.
+c.s.ac.overrideLegendre = Property(false,0);
+
 %Other settings
 c.s.other = struct;
 

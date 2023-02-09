@@ -23,7 +23,8 @@ if isa(value,'numeric')
     %Everything else gets converted via the vector/matrix converter rules
     if property.transformType == 1
         %If the dynamics weren't set up, you'll get an error message.
-        if context.ac.useMomentum.value
+        if context.ac.useMomentum.value && ...
+                ~context.s.ac.overrideLegendre.value
             %We run the conversion equations through a paramScan first
             ceqns = paramScan(context.d.qdot2p.value,context);
             value = qdotp(value,ceqns,context.d.q.value,...
@@ -57,14 +58,17 @@ elseif isa(value,'sym')
     extcoords = context.d.ev.value;
     
     if context.ac.useMomentum.value
-        value = qdotpsym(value,context.d.qdot2p.value,...
+        if ~context.s.ac.overrideLegendre.value
+            value = qdotpsym(value,context.d.qdot2p.value,...
                          context.d.qdot.value);
+        end
         nonposcoords = context.d.p.value;
     else
         nonposcoords = context.d.qdot.value;
     end
     
     coords = [poscoords; nonposcoords; extcoords];
+    
     value = standard2newsym(value,context.ac.basis.value,...
                   context.ac.origin.value,formula(coords),formula(coords));
 
