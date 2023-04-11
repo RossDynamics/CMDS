@@ -30,6 +30,13 @@ catch exception
         ['v cannot be converted. '...
          'Make sure v does not have fewer rows than o or p.']);
         throw(ME);
+    elseif strcmp(exception.message,'Unsupported argument type') || ...
+           strcmp(exception.message,'Matrix dimensions must agree')
+        %Extremely useful toolboxes like the Multiprecision Computing
+        %Toolbox are not always compatible with symbolic variables, so we
+        %sometimes have to make conversions to ensure they work
+        %smoothly with CMDS.
+        vnew = mp2sym(p) \ (v - mp2sym(o));
     else
         rethrow(exception)
     end

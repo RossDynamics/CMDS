@@ -31,6 +31,8 @@ function p = cplot(y,c,varargin)
 %'position' mode). 
 %-If c.d.n >= 4, cplot will show
 %the 2D q_i - qdot_i/p_i space projection of the same trajectory. 
+%If c.d.o.v.dmode = 'i-j' for some integer i, cplot will 
+%show the ith and jth coordinates in the coordinate list. 
 %cplot accepts an optional lineSpec argument; if it is provided, cplot will
 %pass it to the plotter function in use.
 
@@ -56,8 +58,11 @@ elseif strcmp(dmode,'velocity')
         p = plot(y(3,:),y(4,:),lineSpec);
     elseif n >= 6
         p = plot3(y(n/2+1,:),y(n/2+2,:),y(n/2+3,:),lineSpec);
-    end 
-elseif ~isnan(str2double(dmode))
+    end
+elseif contains(dmode,'-')
+    components = str2double(split(dmode,'-'));
+    p = plot(y(components(1),:),y(components(2),:),lineSpec);    
+elseif ~isnan(str2double(dmode))    
     inum = str2double(dmode);
     if n == 2
         p = plot(y(1,:),y(2,:),lineSpec);

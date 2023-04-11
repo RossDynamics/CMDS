@@ -12,6 +12,6 @@ U = 1/2*k*q^2;
 c = cs(c,'d.T',T); 
 c = cs(c,'d.U',U);
 
-c = solveDynamics(c);
+c = solveDynamics(c);c
 end
 

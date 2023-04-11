@@ -32,7 +32,7 @@ num_extended = v(n+1:end,:);
 %We obtain a representation of the new vector in the old coordinates
 solution = qdotpsym(new,ceqns,new);
 
-v_new = zeros(size(v));
+v_new = zeros(size(v),'like',v);
 
 %Because v might be a set of vectors, we use a for loop to consider each
 %one

@@ -46,13 +46,11 @@ end
             phi2 = tensor(reshape(y(n^2+n+1:n^3+n^2+n),[n n n]));
             phi2dot = ttt(tensor(jacobians{1}(t,x)),phi2,2,1) + ...
                       ttt(ttt(tensor(jacobians{2}(t,x)),tensor(phi),2,1),...
-                      tensor(phi),3,1);
+                      tensor(phi),2,1); %original: tensor(phi),3,1);
             
-            ydot = [ydot; reshape(double(phi2dot),[n^3 1])];
+            ydot = [ydot; reshape(getfield(phi2dot,'data'),[n^3 1])];
         end 
-        
-        
-        
+
     end
 
 STMEqnsHandle = @STMhandle;
