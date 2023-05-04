@@ -37,7 +37,7 @@ Download this repository. Then, add the downloaded folder to your MATLAB path wi
 
 ### Requirements
 
-CMDS requires MATLAB and the [Symbolic Math Toolbox](https://www.mathworks.com/help/symbolic/getting-started-with-symbolic-math-toolbox.html).
+CMDS requires MATLAB, the [Symbolic Math Toolbox](https://www.mathworks.com/help/symbolic/getting-started-with-symbolic-math-toolbox.html), and the the [Tensor Toolbox](https://www.tensortoolbox.org/).
 Optional support for other toolboxes may be added in the future.
 
 # Contributing
