@@ -57,7 +57,14 @@ ics = [y0; reshape(eye(n),[n^2 1]); ...
           
 sol = integ(tspan,ics,c,STMEqns);
 
+%if we can't actually satisfy the tspan, we go for the next best thing
+try
 soly = deval(sol,tspan);
+catch exception
+    if strcmp(exception.identifier,'MATLAB:deval:SolOutsideInterval')
+        soly = deval(sol,sol.x);
+    end
+end
 y = soly(1:n,:);
 
 if stmOrder == 1
