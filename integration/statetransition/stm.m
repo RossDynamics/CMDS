@@ -1,4 +1,4 @@
-function [phi,y,c] = stm(tspan,y0,c,varargin)
+function [phi,y,c,sol] = stm(tspan,y0,c,varargin)
 %STM Calculates and returns the "trajectory" of state transition matrices
 %over the tspan provided for the trajectory in the equations of motion with
 %initial condition y0 (expressed as a vertical vector). The third dimension
