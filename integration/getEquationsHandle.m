@@ -5,6 +5,12 @@ function eqnHandle = getEquationsHandle(eqns,c)
 %context c via a paramScan. Be sure that the derivatives are on the left 
 %side of eqns and that everything else is on the right side.
 
+%Strangely, there are use-cases for handling this behavior like so.
+if isa(eqns,'function_handle')
+    eqnHandle = eqns;
+    return;
+end
+
 eqnsf = formula(eqns);
 
 %We run paramScan on the equations of motion to substitute in any
